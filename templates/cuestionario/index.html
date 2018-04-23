@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col">
+
+            {% if preguntas %}
+                <div id="id_user" style="display:none;">{{ id_user }}</div>
+                <ul class="list-group">
+
+                    {% for pregunta in preguntas %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ pregunta.pregunta }}
+                        <div id="pregunta_{{ pregunta.id }}">
+                            <img src="{% static 'images/icono-contestada.png' %}" alt="" class="contestada icono-respuesta" style="display:none;">
+                            <a href="" class="respuesta opcion" data-opcion="BUENO">
+                                <img src="{% static 'images/icono-bueno.png' %}" alt="" class="icono-respuesta">
+                            </a>
+                            <a href="" class="respuesta opcion" data-opcion="REGULAR">
+                                <img src="{% static 'images/icono-regular.png' %}" alt="" class="icono-respuesta">
+                            </a>
+                            <a href="" class="respuesta opcion" data-opcion="MALO">
+                                <img src="{% static 'images/icono-malo.png' %}" alt="" class="icono-respuesta">
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    <button id="enviar" class="btn_enviar">Enviar Respuestas</button>
+                </ul>
+            {% else %} No hay preguntas disponibles {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
